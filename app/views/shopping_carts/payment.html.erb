@@ -1,0 +1,32 @@
+<h1>CHECKOUT/PAYMENT</h1>
+
+<% if !@shopping_cart.checked_in? %>
+  <p><%= link_to "Buy!", shopping_cart_checkout_path(@shopping_cart), method: :post %></p>
+  <p><%= link_to "Cancel and keep shopping", products_path %></p>
+<% end %>
+
+<h2>SHOPPING CART DETAILS</h2>
+<p>Shopping cart ID: <%= @shopping_cart.id %></p>
+<p>User ID: <%= @shopping_cart.user_id %></p>
+
+<p>Products: <% @shopping_cart.products.each do |product| %></p>
+  <p><%= product.name %> (cost =  R$<%= product.value %>)
+    <% if ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+      <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+      Quantity = <%= association.quantity %>
+    <% end %>
+  </p>
+<% end %>
+
+<% total_cost = 0 %>
+<% @shopping_cart.products.each do |product| %>
+  <% total_cost += product.value %>
+<% end %>
+<p>Total cost = R$ <%= total_cost %></p>
+<p><%= link_to 'Edit', @shopping_cart %></p>
+
+<p>Payment method -> PIX ########</p>
+
+<% if @shopping_cart.user.admin? %>
+  <p><%= link_to "Shopping carts index", shopping_carts_path %></p>
+<% end %>

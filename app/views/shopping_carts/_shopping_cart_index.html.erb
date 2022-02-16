@@ -1,0 +1,23 @@
+<% @shopping_carts.each do |shopping_cart| %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Checked_in?</th>
+        <th>Delivered?</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td><%= shopping_cart.id %></td>
+        <td><%= shopping_cart.checked_in %></td>
+        <td><%= shopping_cart.delivered %></td>
+        <td>
+          <%= link_to "View", shopping_cart %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

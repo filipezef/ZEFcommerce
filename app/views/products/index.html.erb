@@ -1,0 +1,35 @@
+<h1>PRODUCTS</h1>
+
+<% @products.each do |product| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td>
+          <% if logged_in? && current_user.admin? %>
+            <%= link_to "Edit", edit_product_path(product) %>
+            <%= link_to "Delete", product_path(product), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+          <%= link_to "View", product %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<p><%= link_to "Home", root_path %></p>
+
+<% if logged_in? %>
+  <p><%= link_to "Log out", logout_path, method: :delete %></p>
+<% else %>
+  <p><%= link_to "Log in", login_path %></p>
+  <p><%= link_to "Sign up", signup_path %></p>
+<% end %>

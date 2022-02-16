@@ -1,0 +1,8 @@
+<%= render "shared/errors", obj: @category %>
+<%= form_with(model: @category, local: true) do |f| %>
+  <%= f.label :name %>
+  <p><%= f.text_field :name, placeholder: "Enter category name" %></p>
+  <p><%= f.submit(@category.new_record? ? "New category" : "Update category") %></p>
+<% end %>
+
+<p><%= link_to "Cancel", categories_path  %></p>

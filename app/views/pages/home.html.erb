@@ -1,1 +1,16 @@
 <h1>HOME PAGE</h1>
+
+<p><%= link_to "Products index", products_path  %></p>
+
+<% if logged_in? && current_user.admin? %>
+  <h2>Admin</h2>
+  <p><%= link_to "Categories index", categories_path  %></p>
+  <p><%= link_to "Shopping carts index", shopping_carts_path  %></p>
+  <p><%= link_to "Users index", users_path  %></p>
+  <p><%= link_to "Log out", logout_path, method: :delete %></p>
+<% elsif logged_in? %>
+  <p><%= link_to "Log out", logout_path, method: :delete %></p>
+<% else %>
+  <p><%= link_to "Log in", login_path %></p>
+  <p><%= link_to "Sign up", signup_path %></p>
+<% end %>

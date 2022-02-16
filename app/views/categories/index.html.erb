@@ -1,0 +1,28 @@
+<h1>CATEGORIES</h1>
+
+<% @categories.each do |category| %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr>
+        <td><%= category.id %></td>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to "View", category %>
+          <%= link_to "Edit", edit_category_path(category) %>
+          <%= link_to "Delete", category_path(category), method: :delete, data: { confirm: "Are you sure?" } %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+<p><%= link_to "New category", new_category_path %></p>
+<p><%= link_to "Home", root_path %></p>

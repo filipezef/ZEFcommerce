@@ -1,0 +1,31 @@
+<h1>SHOPPING CART DETAILS</h1>
+<p>Shopping cart ID: <%= @shopping_cart.id %></p>
+<p>User ID: <%= @shopping_cart.user_id %></p>
+
+<p>Products: <% @shopping_cart.products.each do |product| %></p>
+  <p><%= product.name %> (cost =  R$<%= product.value %>)
+    <% if ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+      <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+      Quantity = <%= association.quantity %>
+      (<%= link_to "View", product %>
+      <%= link_to "+", product_shopping_cart_add_path(:id => association.id), method: :post %>
+      <%= link_to "-", product_shopping_cart_reduce_path(:id => association.id), method: :post %>
+      <%= link_to "Remove", product_shopping_cart_path(association), method: :delete, data: { confirm: "Are you sure?" } %>)
+    <% end %>
+  </p>
+<% end %>
+
+<% total_cost = 0 %>
+<% @shopping_cart.products.each do |product| %>
+  <% total_cost += product.value %>
+<% end %>
+<p>Total cost = <%= total_cost %></p>
+
+<% if @shopping_cart.user.admin? %>
+  <p><%= link_to "Shopping carts index", shopping_carts_path %></p>
+<% end %>
+
+<% if !@shopping_cart.checked_in? %>
+  <p><%= link_to "Checkout", payment_path %></p>
+  <p><%= link_to "Cancel and keep shopping", products_path %></p>
+<% end %>

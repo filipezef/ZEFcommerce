@@ -1,0 +1,26 @@
+<h1>PRODUCT DETAILS</h1>
+
+<p>Product Name: <%= @product.name %></p>
+<p>Product Description: <%= @product.description %></p>
+<p>Product Cost: R$<%= @product.value %></p>
+
+
+<% if logged_in? && current_user.admin? %>
+  <h2>Admin</h2>
+  <%= link_to 'Edit', edit_product_path(@product) %>
+  <%= link_to 'Delete', product_path(@product), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+
+<p><%= link_to 'Products Index', products_path %></p>
+
+<% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
+  <% @shopping_cart = current_user.shopping_carts.last %>
+  <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
+    <p>Product already in your shopping cart, go ahead and add some more -> <%= link_to 'Shopping cart', @shopping_cart %></p>
+  <% else %>
+    <p><%= link_to 'Add to cart', shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post %></p> 
+  <% end %>
+<% elsif !current_user %>
+  <p><%= link_to 'Log in', login_path %></p>
+  <p><%= link_to 'Sign up', signup_path %></p>  
+<% end %>

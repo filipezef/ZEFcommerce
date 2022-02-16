@@ -1,0 +1,11 @@
+<h1>VIEW CATEGORY</h1>
+
+<p>Category ID: <%= @category.id %></p>
+<p>Category Name: <%= @category.name %></p>
+<p>Created <%= time_ago_in_words(@category.created_at) %> ago, edited <%= time_ago_in_words(@category.updated_at) %> ago</p>
+
+
+<%= link_to "Edit", edit_category_path(@category) %>
+<%= link_to "Delete", category_path(@category), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<%= link_to "Index", categories_path %>

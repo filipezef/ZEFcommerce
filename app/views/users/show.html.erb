@@ -1,0 +1,21 @@
+<h1><%= @user.name %>'s profile</h1>
+
+<p>User Name: <%= @user.name %></p>
+<p>User email: <%= @user.email %></p>
+
+<h2><%= @user.name %>'s <%= pluralize(@user.shopping_carts.count, "shopping cart") %></h2>
+
+<%= render 'shopping_carts/shopping_cart_index' %>
+
+<% if logged_in? && current_user.admin? %>
+  <%= link_to "Edit", edit_user_path(@user) %>
+  <%= link_to "Delete", user_path(@user), method: :delete, data: { confirm: "Are you sure? All user info along
+                                                                             with associated shopping carts will be deleted from DB" } %>
+  <p><%= link_to "Users index", users_path %></p>
+<% end %>
+
+<% if logged_in? && (current_user == @user && !@user.admin?) %>
+  <%= link_to "Edit", edit_user_path(@user) %>
+<% end %>
+
+<p><%= link_to "Home", root_path %></p>
