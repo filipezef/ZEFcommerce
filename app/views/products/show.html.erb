@@ -4,6 +4,10 @@
 <p>Product Description: <%= @product.description %></p>
 <p>Product Cost: R$<%= @product.value %></p>
 
+<% name = @product.name%>
+<%= image_tag "products/#{name}/#{name}-1024x1024.jpg", title: 'width: "200", height: "125"', alt: 'product image', width: '200', height: '125' %>
+<%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '400', height: '250' %>
+<%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '640', height: '400' %>
 
 <% if logged_in? && current_user.admin? %>
   <h2>Admin</h2>
