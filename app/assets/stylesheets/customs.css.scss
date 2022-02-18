@@ -1,5 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap';
 
+
 /* 
 
 p - Lists
@@ -12,3 +13,35 @@ H5 -
 H6 -
 
 */
+
+/*
+  ========================================
+  Links
+  ========================================
+*/
+
+a {
+  color: #98a7fc;
+  text-decoration: none;
+}
+a:hover {
+  color: #dfe2e5;
+}
+
+/*
+  ========================================
+  Product
+  ========================================
+*/
+/* Show */
+.monospaced { 
+  font-family: 'Ubuntu Mono', monospaced ;
+}
+.add-to-cart .btn-qty {
+  width: 52px;
+  height: 46px;
+}
+.add-to-cart .btn {
+  border-radius: 0;
+}
+
