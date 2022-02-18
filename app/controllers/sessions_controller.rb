@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       session[:user_admin] = user.admin?
       session[:product_id] = nil
       session[:cart_id] = nil
+      session[:product_qty] = 1
       flash[:notice] = 'You have successfully loged in.'
       current_cart
       redirect_to products_path
@@ -27,7 +28,23 @@ class SessionsController < ApplicationController
     session[:user_admin] = nil
     session[:product_id] = nil
     session[:cart_id] = nil
+    session[:product_qty] = 1
     flash[:notice] = 'You have successfully logged out'
     redirect_to root_path
   end
+
+  def add_quantity
+    session[:product_qty] += 1
+    redirect_to product_path(Product.find(session[:product_id]))
+  end
+
+  def reduce_quantity
+    if session[:product_qty] > 1
+      session[:product_qty] -= 1
+    else
+      flash[:notice] = 'A quantidade deve ser igual ou maior que 1'
+    end
+    redirect_to product_path(Product.find(session[:product_id]))
+  end
+
 end

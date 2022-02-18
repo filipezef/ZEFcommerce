@@ -1,0 +1,57 @@
+/*
+  ========================================
+  Links
+  ========================================
+*/
+.caret_up, .caret_down {
+  color: white;
+  text-decoration: none;
+}
+.caret_up:hover {
+  color: blue;
+}
+.caret_down:hover {
+  color: red;
+}
+
+/*
+  ========================================
+  Product
+  ========================================
+*/
+/* Show */
+
+.product-show-div {
+  padding: 0 10px;
+  
+}
+
+.small-product-show {
+  font-size: small;
+}
+
+.monospaced { 
+  font-family: 'Ubuntu Mono', monospaced ;
+}
+.add-to-cart .btn-qty {
+  width: 52px;
+  height: 46px;
+}
+.add-to-cart .btn {
+  border-radius: 10;
+}
+
+.add-to-cart {
+  margin: 15px 0;
+  padding: 10px 0;
+  width: 100%;
+  border-top: 1px solid #dfe2e5;
+  border-bottom: 1px solid #dfe2e5;
+
+}
+.add-to-cart:last-child {
+  margin-bottom: 0;
+}
+
+
+

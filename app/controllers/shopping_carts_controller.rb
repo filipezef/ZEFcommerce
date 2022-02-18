@@ -20,6 +20,8 @@ class ShoppingCartsController < ApplicationController
 
   def add_to_cart
     @shopping_cart.products << Product.find(session[:product_id])
+    ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
+    session[:product_qty] = 1
     flash[:notice] = 'Product added to your cart :)'
     redirect_to products_path
   end

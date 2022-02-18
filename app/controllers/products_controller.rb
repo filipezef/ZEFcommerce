@@ -4,7 +4,10 @@ class ProductsController < ApplicationController
 
   def show
     # to enable product to be added to shopping cart at product show page by logged in user
-    session[:product_id] = @product.id
+    if session[:product_id] != @product.id
+      session[:product_id] = @product.id
+      session[:product_qty] = 1
+    end
   end
 
   def index

@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+  # routes to allow setting product quantity prior to adding it to the shopping cart
+  post 'sessions/add' => 'sessions#add_quantity', as: 'session_add'
+  post 'sessions/reduce' => 'sessions#reduce_quantity', as: 'session_reduce'
 
   ########## products ##########
   resources :products

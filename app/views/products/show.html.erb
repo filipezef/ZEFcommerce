@@ -1,22 +1,22 @@
 <!-- Referemce: https://www.practicalecommerce.com/Create-Responsive-Ecommerce-Product-Pages-with-Bootstrap -->
+
 <div class="container">
-  <div class="row">
+  <div class="row mt-3">
     <p>Home / Products / <%= @product.name %>
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-      </svg>
-      <i class="bi bi-cart"></i>
+      <i class="bi bi-cart2"></i> 
+      <i class="bi bi-cart3"></i> 
+      <i class="bi bi-cart4"></i>
     </p>
   </div>
 </div><!-- end row -->
 
 <div class="container" id="product-section">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 product-show-div">
       <% name = @product.name %>
       <%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '484', height: '302.5', class: "image-responsive" %>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6 product-show-div">
       <div class="row">
         <div class="col-md-12">
           <h1><%= @product.name %></h1>
@@ -36,26 +36,12 @@
         </div>
       </div><!-- end row -->
       <div class="row">
-        <div class="col-md-3">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
-         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-half" viewBox="0 0 16 16">
-            <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"/>
-          </svg>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
-            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
-          </svg>
-
+        <div class="col-md-4">
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-half"></i>
+          <i class="bi bi-star"></i>
           <span class="badge bg-success">61</span>
         </div>
         <div class="col-md-3">
@@ -70,43 +56,70 @@
 
       <div class="row add-to-cart">
         <div class="col-md-5 product-qty">
-          <span class="btn btn-light btn-lg btn-qty">
-            <i class="bi bi-caret-up-fill"></i>
+          <span class="btn btn-dark btn-lg btn-qty">
+            <%= link_to session_add_path, class: "caret_up", method: :post do %>
+              <i class="bi bi-caret-up-fill"></i>
+            <% end %>
           </span>
-          <input class="btn btn-light btn-qty" value="1" />
-          <span class="btn btn-light btn-lg btn-qty">
-            <i class="bi bi-caret-down-fill"></i>
+          <input class="btn btn-light btn-qty" value="<%= session[:product_qty] %>" />
+          <span class="btn btn-dark btn-lg btn-qty">
+            <%= link_to session_reduce_path, class: "caret_down", method: :post do %>
+              <i class="bi bi-caret-down-fill"></i>
+            <% end %>
           </span>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
-          Add to Cart
+
+            <!-- Define button action -->
+            <% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
+              <% @shopping_cart = current_user.shopping_carts.last %>
+              <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
+                Item já no <%= link_to @shopping_cart, class: "caret_up" do %>
+                   <i class="bi bi-cart2"></i>
+                <% end %>
+              <% else %>
+                <%= link_to shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
+                  <i class="bi bi-cart2"></i> Comprar
+                <% end %>
+              <% end %>
+            <% elsif !current_user %>
+              <%= link_to login_path, class: "caret_up" do %>
+                <i class="bi bi-cart2"></i> <small class="small-product-show">(login necessário)</small>
+              <% end %>  
+            <% end %>
+
           </button>
         </div>
-      </div><!-- end row -->
-
-      <div class="row">
-        <div class="col-md-4 text-center">
-          <span class="monospaced">In Stock</span>
-        </div>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <span class="monospaced">Item disponível</span>
+          </div>
+        </div><!-- end row -->
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12 bottom-rule top-10"></div>
       </div><!-- end row -->
 
+      <div class="row">
+        <div class="col-md-12 top-10">
+          <p>Prazo de entrega conforme situação estoque, <a href="tel:18005551212">fale conosco: 0800-555-1212</a></p>
+        </div>
+      </div><!-- end row -->
+
       <!-- NEW Nav tabs -->
       <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Descrição</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Features</button>
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Características</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Observações</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Opiniões</button>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
@@ -129,15 +142,3 @@
 </div><!-- end container -->
 
 <p><%= link_to 'Products Index', products_path %></p>
-
-<% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
-  <% @shopping_cart = current_user.shopping_carts.last %>
-  <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
-    <p>Product already in your shopping cart, go ahead and add some more -> <%= link_to 'Shopping cart', @shopping_cart %></p>
-  <% else %>
-    <p><%= link_to 'Add to cart', shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post %></p> 
-  <% end %>
-<% elsif !current_user %>
-  <p><%= link_to 'Log in', login_path %></p>
-  <p><%= link_to 'Sign up', signup_path %></p>  
-<% end %>
