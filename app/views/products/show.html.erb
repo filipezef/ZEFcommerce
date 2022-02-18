@@ -20,14 +20,13 @@
       <div class="row">
         <div class="col-md-12">
           <span class="badge bg-primary">CATEGORY</span>
-          <span class="monospaced">No. SERIAL NUMBER</span>
+          <span class="monospaced">Cod. 01</span>
         </div>
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12">
           <p class="description">
-            Classic film camera. Uses 620 roll film.
-            Has a 2&frac14; x 3&frac14; inch image size.
+            <%= @product.description %>
           </p>
         </div>
       </div><!-- end row -->
@@ -41,7 +40,7 @@
           <span class="badge bg-success">61</span>
         </div>
         <div class="col-md-3">
-          <span class="monospaced">Write a Review</span>
+          <span class="monospaced">Review</span>
         </div>
       </div><!-- end row -->
       <div class="row">
@@ -71,22 +70,13 @@
         <div class="col-md-4 text-center">
           <span class="monospaced">In Stock</span>
         </div>
-        <div class="col-md-4 col-md-offset-1 text-center">
-          <a class="monospaced" href="#">Add to Shopping List</a>
-        </div>
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12 bottom-rule top-10"></div>
       </div><!-- end row -->
 
-      <div class="row">
-        <div class="col-md-12 top-10">
-          <p>To order by telephone, <a href="tel:18005551212">please call 1-800-555-1212</a></p>
-        </div>
-      </div><!-- end row -->
-
       <!-- NEW Nav tabs -->
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
           <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
         </li>
@@ -102,7 +92,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-          The 'Brownie' Flash B is a box camera taking 2&frac14; × 3&frac14;" frames on 620 film, made of sheet metal by Kodak Ltd. in England, 1958-60.
+          <%= @product.description %>
         </div>
         <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
           Describe some features
