@@ -75,8 +75,8 @@
             <% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
               <% @shopping_cart = current_user.shopping_carts.last %>
               <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
-                Item já no <%= link_to @shopping_cart, class: "caret_up" do %>
-                   <i class="bi bi-cart2"></i>
+                <%= link_to @shopping_cart, class: "caret_up" do %>
+                  Item já no <i class="bi bi-cart2"></i>
                 <% end %>
               <% else %>
                 <%= link_to shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
