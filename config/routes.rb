@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'payment', to: 'shopping_carts#payment'
   post 'shopping_carts/:id/checkout' => 'shopping_carts#checkout', as: 'shopping_cart_checkout'
   post 'shopping_carts/:id/add_to_cart' => 'shopping_carts#add_to_cart', as: 'shopping_cart_add_to_cart'
+  post 'shopping_carts/:id/buy_now' => 'shopping_carts#buy_now', as: 'shopping_cart_buy_now'
 
   ########## product_shopping_carts ##########
   # product_shopping_cart's controller routes, shopping_cart instanced by action current_cart, at application controller

@@ -1,5 +1,11 @@
 /*
   ========================================
+  Grid
+  ========================================
+*/
+
+/*
+  ========================================
   Links
   ========================================
 */
@@ -7,11 +13,8 @@
   color: white;
   text-decoration: none;
 }
-.caret_up:hover {
-  color: blue;
-}
-.caret_down:hover {
-  color: red;
+.caret_up:hover, .caret_down:hover {
+  color: black;
 }
 
 /*
@@ -20,11 +23,6 @@
   ========================================
 */
 /* Show */
-
-.product-show-div {
-  padding: 0 10px;
-  
-}
 
 .small-product-show {
   font-size: small;
@@ -43,11 +41,9 @@
 
 .add-to-cart {
   margin: 15px 0;
-  padding: 10px 0;
-  width: 100%;
+  padding: 25px 0;
   border-top: 1px solid #dfe2e5;
   border-bottom: 1px solid #dfe2e5;
-
 }
 
 

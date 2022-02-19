@@ -2,7 +2,7 @@ class ShoppingCartsController < ApplicationController
   # reference for protect_from_forgery:
   # https://github.com/howardmann/Tutorials/blob/master/Rails_Shopping_Cart.md
   protect_from_forgery with: :exception
-  before_action :set_shopping_cart, only: [:show, :checkout, :add_to_cart]
+  before_action :set_shopping_cart, only: [:show, :checkout, :add_to_cart, :buy_now]
   before_action :require_same_user, only: [:show, :checkout]
   before_action :require_admin, only: [:index]
   before_action :current_cart
@@ -24,6 +24,14 @@ class ShoppingCartsController < ApplicationController
     session[:product_qty] = 1
     flash[:notice] = 'Product added to your cart :)'
     redirect_to products_path
+  end
+
+  def buy_now
+    @shopping_cart.products << Product.find(session[:product_id])
+    ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
+    session[:product_qty] = 1
+    flash[:notice] = 'Commit your order!'
+    redirect_to payment_path
   end
 
   def payment

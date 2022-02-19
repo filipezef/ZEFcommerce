@@ -2,21 +2,17 @@
 
 <div class="container">
   <div class="row mt-3">
-    <p>Home / Products / <%= @product.name %>
-      <i class="bi bi-cart2"></i> 
-      <i class="bi bi-cart3"></i> 
-      <i class="bi bi-cart4"></i>
-    </p>
+    <p><i class="bi bi-cart2"></i> <%= link_to 'Products', products_path %> / <%= link_to @product.name, @product %></p>
   </div>
 </div><!-- end row -->
 
 <div class="container" id="product-section">
   <div class="row">
-    <div class="col-md-6 product-show-div">
+    <div class="col-md-6">
       <% name = @product.name %>
-      <%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '484', height: '302.5', class: "image-responsive" %>
+      <%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '484', height: '302.5', class: "img-fluid" %>
     </div>
-    <div class="col-md-6 product-show-div">
+    <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
           <h1><%= @product.name %></h1>
@@ -36,21 +32,18 @@
         </div>
       </div><!-- end row -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-7">
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-fill"></i>
           <i class="bi bi-star-half"></i>
           <i class="bi bi-star"></i>
-          <span class="badge bg-success">61</span>
-        </div>
-        <div class="col-md-3">
-          <span class="monospaced">Review</span>
+          <span class="badge bg-success">61 reviews</span>
         </div>
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12 bottom-rule">
-          <h2 class="product-price">R$ <%= @product.value %></h2>
+          <h2 class="product-price">R$ <%= @product.value %>0</h2>
         </div>
       </div><!-- end row -->
 
@@ -68,32 +61,41 @@
             <% end %>
           </span>
         </div>
-        <div class="col-md-5">
-          <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
+        <div class="col-md-7">
 
-            <!-- Define button action -->
-            <% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
-              <% @shopping_cart = current_user.shopping_carts.last %>
-              <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
+          <!-- Define button action -->
+          <% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
+            <% @shopping_cart = current_user.shopping_carts.last %>
+            <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
+              <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
                 <%= link_to @shopping_cart, class: "caret_up" do %>
-                  Item já no <i class="bi bi-cart2"></i>
+                  View <i class="bi bi-cart2"></i> <small class="small-product-show">(added)</small>
                 <% end %>
-              <% else %>
+              </button>
+            <% else %>
+              <button class="btn btn-lg btn-info btn-brand btn-full-width">
+                <%= link_to shopping_cart_buy_now_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
+                  <i class="bi bi-cart2"></i> Buy Now!
+                <% end %>
+              </button>
+              <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
                 <%= link_to shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
-                  <i class="bi bi-cart2"></i> Comprar
+                  Add to <i class="bi bi-cart2"></i>
                 <% end %>
-              <% end %>
-            <% elsif !current_user %>
-              <%= link_to login_path, class: "caret_up" do %>
-                <i class="bi bi-cart2"></i> <small class="small-product-show">(login necessário)</small>
-              <% end %>  
+              </button>
             <% end %>
+          <% elsif !current_user %>
+            <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
+              <%= link_to login_path, class: "caret_up" do %>
+                Login <i class="bi bi-cart2"></i>
+              <% end %>
+            </button>  
+          <% end %>
 
-          </button>
         </div>
         <div class="row">
           <div class="col-md-4 text-center">
-            <span class="monospaced">Item disponível</span>
+            <span class="monospaced">In Stock</span>
           </div>
         </div><!-- end row -->
       </div><!-- end row -->
@@ -103,23 +105,23 @@
 
       <div class="row">
         <div class="col-md-12 top-10">
-          <p>Prazo de entrega conforme situação estoque, <a href="tel:18005551212">fale conosco: 0800-555-1212</a></p>
+          <p>Lead time may vary depending on stock, <a href="tel:18005551212">please call: 1-800-555-1212</a></p>
         </div>
       </div><!-- end row -->
 
       <!-- NEW Nav tabs -->
       <ul class="nav nav-tabs mt-3" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Descrição</button>
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true">Description</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Características</button>
+          <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#features" type="button" role="tab" aria-controls="features" aria-selected="false">Features</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Observações</button>
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
         </li>
         <li class="nav-item" role="presentation">
-          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Opiniões</button>
+          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
