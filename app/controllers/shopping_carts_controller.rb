@@ -19,17 +19,13 @@ class ShoppingCartsController < ApplicationController
   end
 
   def add_to_cart
-    @shopping_cart.products << Product.find(session[:product_id])
-    ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
-    session[:product_qty] = 1
+    add_product
     flash[:notice] = 'Product added to your cart :)'
     redirect_to products_path
   end
 
   def buy_now
-    @shopping_cart.products << Product.find(session[:product_id])
-    ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
-    session[:product_qty] = 1
+    add_product
     flash[:notice] = 'Commit your order!'
     redirect_to payment_path
   end
@@ -74,4 +70,17 @@ class ShoppingCartsController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def add_product
+    if @shopping_cart.products.any?
+      if !@shopping_cart.products.find(session[:product_id])
+        @shopping_cart.products << Product.find(session[:product_id])
+      end
+    else
+      @shopping_cart.products << Product.find(session[:product_id])
+    end
+    ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
+    session[:product_qty] = 1
+  end
+
 end

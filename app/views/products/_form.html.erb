@@ -3,7 +3,7 @@
   <%= f.label :name %>
   <p><%= f.text_field :name, placeholder: "Enter product name" %></p>
   <%= f.label :description %>
-  <p><%= f.text_field :description, placeholder: "Enter product description" %></p>
+  <p><%= f.text_area :description, rows: 10, placeholder: "Enter product description" %></p>
   <%= f.label :value %>
   <p><%= f.text_field :value, placeholder: "Value" %></p>
   <p><%= f.submit(@product.new_record? ? "Create product" : "Update product") %></p>

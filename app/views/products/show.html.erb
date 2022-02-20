@@ -8,10 +8,14 @@
 
 <div class="container" id="product-section">
   <div class="row">
+    
+    <!-- col product image -->
     <div class="col-md-6">
       <% name = @product.name %>
-      <%= image_tag "products/#{name}/#{name}-1024x1024.jpg", width: '484', height: '302.5', class: "img-fluid" %>
-    </div>
+      <%= image_tag "products/#{name}/#{name}.jpg", class: "img-fluid" %>
+    </div><!-- end col product image -->
+
+    <!-- col product info + actions -->
     <div class="col-md-6">
       <div class="row">
         <div class="col-md-12">
@@ -21,14 +25,14 @@
       <div class="row">
         <div class="col-md-12">
           <span class="badge bg-primary">CATEGORY</span>
-          <span class="monospaced">Cod. 01</span>
+          <span class="monospaced">No. 19623-35</span>
         </div>
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12">
-          <p class="description">
-            <%= @product.description %>
-          </p>
+          <p><%= simple_format(truncate(@product.description, length: 150)) %><small>Refer to complete description below.</small></p>
+          
+
         </div>
       </div><!-- end row -->
       <div class="row">
@@ -43,12 +47,13 @@
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12 bottom-rule">
-          <h2 class="product-price">R$ <%= @product.value %>0</h2>
+          <h2 class="product-price">$ <%= @product.value %>0</h2>
         </div>
       </div><!-- end row -->
 
-      <div class="row add-to-cart">
-        <div class="col-md-5 product-qty">
+      <!-- row product quantity + vendor info -->
+      <div class="row add-to-cart-top">
+        <div class="col-md-5">
           <span class="btn btn-dark btn-lg btn-qty">
             <%= link_to session_add_path, class: "caret_up", method: :post do %>
               <i class="bi bi-caret-up-fill"></i>
@@ -60,48 +65,68 @@
               <i class="bi bi-caret-down-fill"></i>
             <% end %>
           </span>
+          <div class="text-left mt-2 mb-3">
+            <span class="monospaced"><i class="bi bi-cart-check"></i> Available In Stock</span>
+          </div>
         </div>
         <div class="col-md-7">
+          <h4>Vendor:</h4>
+          <h5 class="monospaced">Lockheed Martin</h5>
+          <%= link_to "lockheedmartin.com", "https://www.lockheedmartin.com/", target: :_blank %>
+          <p>Lockheed Martin Corporation is an American aerospace, arms, defense, information security, and technology corporation with
+             worldwide interests. <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/Lockheed_Martin", target: :_blank %></p>
+        </div>
+      </div><!-- end row product quantity -->
 
+      <!-- row buy now -->
+      <div class="row add-to-cart">
+        <div class="d-grid">
           <!-- Define button action -->
-          <% if current_user && !current_user.shopping_carts.find_by(checked_in: false).nil? %>
+          <% if current_user %>
+            <% @shopping_cart = current_user.shopping_carts.last %>
+            <button class="btn btn-lg btn-info">
+              <%= link_to shopping_cart_buy_now_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
+                <i class="bi bi-cart-check"></i> Buy Now!
+              <% end %>
+            </button>
+          <% else %>
+            <button class="btn btn-lg btn-info">
+              <%= link_to login_path, class: "caret_up" do %>
+                <i class="bi bi-cart-check"></i> Buy Now!
+              <% end %>
+            </button>  
+          <% end %>
+        </div>
+      </div><!-- end row buy now -->
+
+      <!-- row add to cart -->
+      <div class="row add-to-cart-bottom">
+        <div class="d-grid">
+          <!-- Define button action -->
+          <% if current_user %>
             <% @shopping_cart = current_user.shopping_carts.last %>
             <% if !@shopping_cart.products.find_by(name: @product.name).nil? %>
-              <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
+              <button class="btn btn-lg btn-secondary">
                 <%= link_to @shopping_cart, class: "caret_up" do %>
                   View <i class="bi bi-cart2"></i> <small class="small-product-show">(added)</small>
                 <% end %>
               </button>
             <% else %>
-              <button class="btn btn-lg btn-info btn-brand btn-full-width">
-                <%= link_to shopping_cart_buy_now_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
-                  <i class="bi bi-cart2"></i> Buy Now!
-                <% end %>
-              </button>
-              <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
+              <button class="btn btn-lg btn-secondary">
                 <%= link_to shopping_cart_add_to_cart_path(:id => session[:cart_id]), method: :post, class: "caret_up" do %>
-                  Add to <i class="bi bi-cart2"></i>
+                  <i class="bi bi-cart-plus"></i> Add to cart
                 <% end %>
               </button>
             <% end %>
-          <% elsif !current_user %>
-            <button class="btn btn-lg btn-secondary btn-brand btn-full-width">
+          <% else %>
+            <button class="btn btn-lg btn-secondary">
               <%= link_to login_path, class: "caret_up" do %>
-                Login <i class="bi bi-cart2"></i>
+                <i class="bi bi-cart-plus"></i> Add to cart
               <% end %>
             </button>  
           <% end %>
-
         </div>
-        <div class="row">
-          <div class="col-md-4 text-center">
-            <span class="monospaced">In Stock</span>
-          </div>
-        </div><!-- end row -->
-      </div><!-- end row -->
-      <div class="row">
-        <div class="col-md-12 bottom-rule top-10"></div>
-      </div><!-- end row -->
+      </div><!-- end row add to cart -->
 
       <div class="row">
         <div class="col-md-12 top-10">
@@ -132,15 +157,15 @@
           Describe some features
         </div>
         <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-          Add some notes
+          <strong>NO</strong> refunds
         </div>
         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
           Add some reviews
         </div>
       </div>
 
-    </div>
+    </div><!-- end col Product info + actions -->
   </div><!-- end row -->
 </div><!-- end container -->
 
-<p><%= link_to 'Products Index', products_path %></p>
+<%= render 'prodfooter' %>
