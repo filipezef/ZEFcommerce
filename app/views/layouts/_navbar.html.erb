@@ -41,9 +41,9 @@ https://getbootstrap.com/docs/5.1/components/navbar/
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><%= link_to "All products", products_path, class: "dropdown-item" %></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><%= link_to "Aircraft", Category.first, class: "dropdown-item" %></li>
-                <li><%= link_to "Jet-fighters", Category.second, class: "dropdown-item" %></li>
-                <li><%= link_to "Helicopters", Category.third, class: "dropdown-item" %></li>
+                <li><%= link_to "Aircraft", Category.find_by(name: "Aircraft"), class: "dropdown-item" %></li>
+                <li><%= link_to "Jet-fighters", Category.find_by(name: "Jet-fighters"), class: "dropdown-item" %></li>
+                <li><%= link_to "Helicopters", Category.find_by(name: "Helicopters"), class: "dropdown-item" %></li>
               </ul>
             </li>
 
