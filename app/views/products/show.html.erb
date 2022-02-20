@@ -2,17 +2,23 @@
 
 <div class="container">
   <div class="row mt-3">
-    <p><i class="bi bi-cart2"></i> <%= link_to 'Products', products_path %> / <%= link_to @product.name, @product %></p>
+    <p><i class="bi bi-cart2"></i>
+    <% category = @product.categories.first %>
+    <% category2 = @product.categories.second %>
+     <%= link_to 'Products', products_path, class: "primary-link" %>
+      / <%= link_to category.name, category %>
+      / <%= link_to category2.name, category2 %>
+      / <%= link_to @product.name, @product %></p>
   </div>
 </div><!-- end row -->
 
-<div class="container" id="product-section">
+<div class="container mb-5" id="product-section">
   <div class="row">
     
     <!-- col product image -->
     <div class="col-md-6">
       <% name = @product.name %>
-      <%= image_tag "products/#{name}/#{name}.jpg", class: "img-fluid" %>
+      <%= image_tag "products/#{name}/#{name}.jfif", class: "img-fluid" %>
     </div><!-- end col product image -->
 
     <!-- col product info + actions -->
@@ -24,15 +30,13 @@
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12">
-          <span class="badge bg-primary">CATEGORY</span>
-          <span class="monospaced">No. 19623-35</span>
+          <span class="badge bg-primary text-uppercase"><%= link_to @product.categories.last.name %></span>
+          <span class="monospaced">No. 1982-<%= @product.id %></span>
         </div>
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12">
-          <p><%= simple_format(truncate(@product.description, length: 150)) %><small>Refer to complete description below.</small></p>
-          
-
+          <p><%= simple_format(truncate(@product.description, length: 150)) %></p>
         </div>
       </div><!-- end row -->
       <div class="row">
@@ -70,8 +74,7 @@
           </div>
         </div>
         <div class="col-md-7">
-          <h4>Vendor:</h4>
-          <h5 class="monospaced">Lockheed Martin</h5>
+          <h5 class="monospaced"><strong>Vendor:</strong> Lockheed Martin</h5>
           <%= link_to "lockheedmartin.com", "https://www.lockheedmartin.com/", target: :_blank %>
           <p>Lockheed Martin Corporation is an American aerospace, arms, defense, information security, and technology corporation with
              worldwide interests. <%= link_to "Wikipedia", "https://en.wikipedia.org/wiki/Lockheed_Martin", target: :_blank %></p>
@@ -149,7 +152,7 @@
           <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
         </li>
       </ul>
-      <div class="tab-content mb-3" id="myTabContent">
+      <div class="tab-content mb-7" id="myTabContent">
         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
           <%= @product.description %>
         </div>
@@ -168,4 +171,3 @@
   </div><!-- end row -->
 </div><!-- end container -->
 
-<%= render 'prodfooter' %>

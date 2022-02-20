@@ -8,6 +8,7 @@ class ShoppingCartsController < ApplicationController
   before_action :current_cart
 
   def show
+    @products = @shopping_cart.products.paginate(page: params[:page], per_page: 5)
     if !logged_in?
       flash[:notice] = 'Login required'
       redirect_to login_path

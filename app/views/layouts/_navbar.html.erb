@@ -3,40 +3,109 @@
 https://getbootstrap.com/docs/5.1/components/navbar/
 
 -->
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
+<div class="row">
+  <div class="nav-header col-md-12 text-center text-light">
+    <h1 class="text-uppercase">ZEFcommerce</h1>
+    <p class="monospaced">
+      &copy;<%= link_to "Filipe Zeferino", "https://zeferino.herokuapp.com/", class: "text-white", target: :_blank %>
+      <span class="text-uppercase">All Rights Reserved</span>
+    </p>
   </div>
-</nav>
+</div><!-- end row -->
+
+<div class="row bottom-rule mt-1">
+  <div class="col-sm-12">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav" aria-controls="navbarNav"
+          aria-expanded="false" aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        
+          <!-- links -->
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Products
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><%= link_to "All products", products_path, class: "dropdown-item" %></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><%= link_to "Aircraft", Category.first, class: "dropdown-item" %></li>
+                <li><%= link_to "Jet-fighters", Category.second, class: "dropdown-item" %></li>
+                <li><%= link_to "Helicopters", Category.third, class: "dropdown-item" %></li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <% if current_user %>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <%= current_user.name %>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><%= link_to "Profile", @current_user, class: "dropdown-item" %></li>
+                  <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %></li>
+                  <% if current_user.admin? %>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><%= link_to "Users", users_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "Categorires Index", categories_path, class: "dropdown-item" %></li>
+
+                  <% end %>
+                </ul>
+              <% end %>
+
+
+
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active monospaced" aria-current="page" href="https://zeferino.herokuapp.com/" target="_blank">
+                <kbd>By &copy;Filipe Zeferino</kbd>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <!-- Define cart icon action -->
+              <% if current_user %>
+                <% @shopping_cart = current_user.shopping_carts.last %>
+                <%= link_to @shopping_cart, class: "nav-link active" do %>
+                  <h6>Cart <i class="bi bi-cart2"></i></h6>
+                <% end %>
+              <% else %>
+                <%= link_to login_path, class: "nav-link active" do %>
+                  <i class="bi bi-cart2"></i>
+                <% end %>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <!-- Define cart icon action -->
+                <% if current_user %>
+                  <% @shopping_cart = current_user.shopping_carts.last %>
+                  <% if @shopping_cart.products.any? %>
+                    <%= link_to payment_path, class: "nav-link active" do %>
+                      <h6>Checkout <i class="bi bi-cart-check-fill"></i></h6>
+                    <% end %>
+                  <% end %>
+                <% end %>
+            </li>
+
+
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+  </div>
+</div><!-- end row -->

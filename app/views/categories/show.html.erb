@@ -1,11 +1,64 @@
-<h1>VIEW CATEGORY</h1>
+<div class="container index-layout mb-5 me-5">
+  
+  <div class="container">
+    <div class="row mt-3">
+      <p>
+        <i class="bi bi-cart2"></i>
+        <%= link_to 'Products', products_path, class: "primary-link" %>
+         / <%= link_to @category.name %>
+      </p>
+    </div>
+  </div><!-- end row -->
 
-<p>Category ID: <%= @category.id %></p>
-<p>Category Name: <%= @category.name %></p>
-<p>Created <%= time_ago_in_words(@category.created_at) %> ago, edited <%= time_ago_in_words(@category.updated_at) %> ago</p>
+  <!-- col product index -->
+  <div class="col-md-10">
+    <% @products.each do |product| %>
+      <!-- row product info -->
+      <div class="row">
+        <!-- col product image -->
+        <div class="col-md-3">
+          <%= link_to product, class: "link link-secondary" do %>
+            <% name = product.name %>
+            <%= image_tag "products/index/#{name}.jpg", class: "img-fluid" %>
+          <% end %>
+        </div><!-- end col product image -->
+        
+        <!-- col product info -->
+        <div class="col-md-9 mb-5">
+          <%= link_to product do %>
+            <h4><%= product.name %></h4>
+            <small class="monospaced">Lockheed Martin</small>
+            <p><%= simple_format(truncate(product.description, length: 150)) %></p>
+          <% end %>
+          <div class="row">
+            <div class="col-md-4">
+              <h4><strong>$ <%= product.value %>0</strong></h4>
+            </div><!-- end col -->
+            <div class="col-md-8">
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-fill"></i>
+              <i class="bi bi-star-half"></i>
+              <i class="bi bi-star"></i>
+              <span class="badge bg-success">61 reviews</span>
+            </div><!-- end col -->
+          </div><!-- end row -->
+
+          <div class="row float-end">
+            <div class="col-md-4">
+              <span class="badge bg-primary text-uppercase"><%= link_to product.categories.last.name %></span>
+            </div><!-- end col -->
+          </div><!-- end row -->
+          
+        </div><!-- end col product info -->
+      </div><!-- end row product info --> 
+    <% end %>
+
+  </div><!-- end col product index -->
+</div><!-- end container -->
+
+<div class="flickr_pagination mb-4 text-center">
+  <%= will_paginate @products, :container => false %>
+</div>
 
 
-<%= link_to "Edit", edit_category_path(@category) %>
-<%= link_to "Delete", category_path(@category), method: :delete, data: { confirm: "Are you sure?" } %>
-
-<%= link_to "Index", categories_path %>

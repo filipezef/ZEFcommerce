@@ -34,14 +34,22 @@ H6 -
 */
 
 a {
-  color: #98a7fc;
+  color: #2c2b2b;
   text-decoration: none;
 }
 a:hover {
-  color: #dfe2e5;
+  color: #807f7f;
 }
 
 
+/*
+  ========================================
+  Navbar
+  ========================================
+*/
+.nav-header { 
+  background-color: #2c2b2b;
+}
 
 /*
   ========================================
@@ -52,3 +60,40 @@ a:hover {
 #sticky-footer {
   flex-shrink: none;
 }
+
+/*
+  ========================================
+  Pagination (from will_paginate gem)
+  ========================================
+*/
+.flickr_pagination {
+  text-align: center;
+  padding: 0.3em;
+  cursor: default; }
+  .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+  }
+  .flickr_pagination .disabled {
+    color: #424242; }
+  .flickr_pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    color: darkblue; }
+  .flickr_pagination a {
+    border: 1px solid 424242;
+    color: 424242;
+    text-decoration: none; }
+    .flickr_pagination a:hover, .flickr_pagination a:focus {
+      border-color: #424242;
+      background: whitesmoke;
+      color: gray; }
+  .flickr_pagination .page_info {
+    color: #aaaaaa;
+    padding-top: 0.8em; }
+  .flickr_pagination .previous_page, .flickr_pagination .next_page {
+    border-width: 2px; }
+  .flickr_pagination .previous_page {
+    margin-right: 1em; }
+  .flickr_pagination .next_page {
+    margin-left: 1em; }

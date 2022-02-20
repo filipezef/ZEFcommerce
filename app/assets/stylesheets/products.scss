@@ -1,14 +1,9 @@
 /*
   ========================================
-  Grid
-  ========================================
-*/
-
-/*
-  ========================================
   Links
   ========================================
 */
+/********** Show **********/
 .caret_up, .caret_down {
   color: white;
   text-decoration: none;
@@ -22,7 +17,7 @@
   Product
   ========================================
 */
-/* Show */
+/********** Show **********/
 
 .small-product-show {
   font-size: small;
@@ -49,7 +44,14 @@
   border-bottom: 1px solid #dfe2e5;
 }
 
-/* Footer */
+/********** index **********/
+/*
+.index-layout {
+  min-width: 700px;
+}
+ */
+
+/********** Footer **********/
 .bottom-rule {
   border-bottom: 1px solid lightgray;
 }
@@ -75,7 +77,7 @@ footer .list-inline li:not(:first-child):not(:last-child) {
   border-right: 1px solid lightgray;
 }
 
-/* Footer Navbar */
+/********** Footer Navbar **********/
 .navbar-footer {
   background-color: inherit;
   border-radius: 0;

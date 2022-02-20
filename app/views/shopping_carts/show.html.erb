@@ -1,31 +1,70 @@
-<h1>SHOPPING CART DETAILS</h1>
-<p>Shopping cart ID: <%= @shopping_cart.id %></p>
-<p>User ID: <%= @shopping_cart.user_id %></p>
+ <div class="container index-layout mb-5 me-5">
 
-<p>Products: <% @shopping_cart.products.each do |product| %></p>
-  <p><%= product.name %> (cost =  R$<%= product.value %>)
-    <% if ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+  <!-- col product index -->
+  <div class="col-md-10 mt-5">
+    <% @products.each do |product| %>
       <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
-      Quantity = <%= association.quantity %>
-      (<%= link_to "View", product %>
-      <%= link_to "+", product_shopping_cart_add_path(:id => association.id), method: :post %>
-      <%= link_to "-", product_shopping_cart_reduce_path(:id => association.id), method: :post %>
-      <%= link_to "Remove", product_shopping_cart_path(association), method: :delete, data: { confirm: "Are you sure?" } %>)
+      <!-- row product info -->
+      <div class="row">
+        <!-- col product image -->
+        <div class="col-md-3">
+          <%= link_to product, class: "link link-secondary" do %>
+            <% name = product.name %>
+            <%= image_tag "products/index/#{name}.jpg", class: "img-fluid" %>
+          <% end %>
+        </div><!-- end col product image -->
+        
+        <!-- col product info -->
+        <div class="col-md-9 mb-5">
+          <%= link_to product do %>
+            <h4><%= product.name %></h4>
+            <small class="monospaced">Lockheed Martin</small>
+            <p><%= simple_format(truncate(product.description, length: 100)) %></p>
+          <% end %>
+          <div class="row">
+            <div class="col-md-4">
+              <h4><strong>$ <%= product.value %>0</strong></h4>
+            </div><!-- end col -->
+            <div class="col-md-8">
+              <!-- row product quantity + vendor info -->
+              <div class="row add-to-cart-top">
+                <div class="col-md-5">
+                  <span class="btn btn-dark btn-lg btn-qty">
+                    <%= link_to product_shopping_cart_add_path(:id => association.id), method: :post do %>
+                    
+                      <i class="bi bi-caret-up-fill"></i>
+                    <% end %>
+                  </span>
+                  <input class="btn btn-light btn-qty" value="<%= association.quantity %>" />
+                  <span class="btn btn-dark btn-lg btn-qty">
+                    <%= link_to product_shopping_cart_reduce_path(:id => association.id), method: :post do %>
+                      <i class="bi bi-caret-down-fill"></i>
+                    <% end %>
+                  </span>
+                  
+                  <div class="text-left mt-2 mb-3">
+                    <%= link_to "Remove", product_shopping_cart_path(association), class: "monospaced", method: :delete, data: { confirm: "Are you sure?" } %>
+                  </div>
+                </div>
+                
+              </div><!-- end row product quantity -->
+            </div><!-- end col -->
+          </div><!-- end row -->
+
+          <% total_cost = 0 %>
+          <% @shopping_cart.products.each do |product| %>
+            <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+            <% total_cost += (product.value * association.quantity) %>
+          <% end %>
+          <p>Total cost = <%= total_cost %></p>
+
+        </div><!-- end col product info -->
+      </div><!-- end row product info --> 
     <% end %>
-  </p>
-<% end %>
 
-<% total_cost = 0 %>
-<% @shopping_cart.products.each do |product| %>
-  <% total_cost += product.value %>
-<% end %>
-<p>Total cost = <%= total_cost %></p>
+  </div><!-- end col product index -->
+</div><!-- end container -->
 
-<% if @shopping_cart.user.admin? %>
-  <p><%= link_to "Shopping carts index", shopping_carts_path %></p>
-<% end %>
-
-<% if !@shopping_cart.checked_in? %>
-  <p><%= link_to "Checkout", payment_path %></p>
-  <p><%= link_to "Cancel and keep shopping", products_path %></p>
-<% end %>
+<div class="flickr_pagination mb-4 text-center">
+  <%= will_paginate @products, :container => false %>
+</div>
