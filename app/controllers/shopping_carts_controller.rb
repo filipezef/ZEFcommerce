@@ -74,7 +74,7 @@ class ShoppingCartsController < ApplicationController
 
   def add_product
     if @shopping_cart.products.any?
-      if !@shopping_cart.products.find(session[:product_id])
+      if ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).nil?
         @shopping_cart.products << Product.find(session[:product_id])
       end
     else
