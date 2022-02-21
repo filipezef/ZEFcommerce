@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  before_action :require_admin
+  before_action :require_admin, except: [:show]
 
   def show
     @products = @category.products.paginate(page: params[:page], per_page: 5)
