@@ -1,16 +1,14 @@
 <div class="container index-layout mb-5">
   <!-- main row -->
   <div class="row justify-content-center">
-    <div class="col mt-5 text-center">
-      
-      <h5 class="monospaced"><i class="bi bi-cart-check"></i> Shopping Cart <i class="bi bi-cart-check"></i></h5>
-  
+    <div class="col mt-5 text-center">      
+      <h3 class="monospaced"><i class="bi bi-cart-check"></i> Shopping Cart <i class="bi bi-cart-check"></i></h3>  
     </div>
   </div>
 
   <div class="row justify-content-center">
     <!-- main col -->
-    <div class="col-md-6 mt-5">
+    <div class="col-md-8 mt-5">
       <% @products.each do |product| %>
         <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
         
@@ -57,15 +55,16 @@
               </div><!-- end col -->
               <!-- col remove -->
               <div class="col-3 text-center">
-                <h6><%= link_to "Remove", product_shopping_cart_path(association), class: "monospaced delete", method: :delete, data: { confirm: "Are you sure?" } %></h6>
-                <i class="bi bi-trash"></i>
+                <h6><%= link_to product_shopping_cart_path(association), class: "monospaced delete", method: :delete, data: { confirm: "Are you sure?" } do %>
+                  <i class="bi bi-trash"></i>
+                <% end %></h6>
               </div><!-- end col -->
             </div>
           </div><!-- end col product info -->
         </div><!-- end row product info --> 
       <% end %>
 
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mb-5">
         <!-- col -->
         <div class="col-6 text-center">
           <% total_cost = 0 %>
@@ -81,27 +80,32 @@
 
   <div class="row mt-2 justify-content-center">
     <!-- col -->
-    <div class="col-5 text-center">
+    <div class="col-md-8 text-center">
       <% if !@shopping_cart.checked_in? %>
-        <p><button class="btn btn-lg btn-info">
+        <div class="d-grid">
+          <button class="btn btn-lg btn-info" type="button">
             <%= link_to shopping_cart_checkout_path(@shopping_cart), method: :post, class: "caret_up" do %>
-              <i class="bi bi-cart-check"></i> Buy Now!
+              <i class="bi bi-cart-check"></i> Confirm Your Order!
             <% end %>
           </button>
-        </p>
-        <p><button class="btn btn-lg btn-secondary">
+
+          <div class="row mt-1 mb-4">
+            <div class="col-md-12 top-10">
+              <strong><small>*Lead time may vary depending on stock, <a href="tel:18005551212">please call: 1-800-555-1212</a></small></strong>
+            </div>
+          </div><!-- end row -->
+
+          <button class="btn btn-lg btn-secondary" type="button">
             <%= link_to products_path, class: "caret_up" do %>
-              <i class="bi bi-cart-check"></i>Keep shopping!
+              <i class="bi bi-cart-check"></i> Keep shopping!
             <% end %>
           </button>
-        </p>
+        </div>
       <% end %>
-    </div>
-  </div>
+    </div><!-- end col -->
+  </div><!-- end row -->
 
 </div><!-- end container -->
-
-
 
 <div class="flickr_pagination mb-4 text-center">
   <%= will_paginate @products, :container => false %>

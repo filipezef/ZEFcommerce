@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   ########## pages ##########
-  root 'pages#home'
+  root 'products#index'
 
   ########## shopping_carts ##########
   resources :shopping_carts, only: [:show, :index]

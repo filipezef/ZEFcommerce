@@ -8,7 +8,7 @@
         <p>Email promotions, news, and information</p>
         <div class="row g-3 align-items-center">
           <div class="col-auto">
-            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+            <input type="password" id="inputPassword6" placeholder="example@example.com" class="form-control" aria-describedby="passwordHelpInline">
           </div>
           <div class="col-auto">
             <button type="submit" class="btn btn-outline-secondary">Subscribe</button>
@@ -23,13 +23,13 @@
           <li class="list-inline-item"><a href="#">Our Guarantee</a></li>
           <li class="list-inline-item"><a href="#">Shipping</a></li>
           <li class="list-inline-item"><a href="#">Product Guides</a></li>
-          <li class="list-inline-item"><a href="#">Customer Care</a></li>
         </ul>
         <ul class="list-inline">
           <li class="list-inline-item text-uppercase">Social Media:</li>
-          <li class="list-inline-item"><a href="#">Instagram</a></li>
-          <li class="list-inline-item"><a href="#">Twitter</a></li>
-          <li class="list-inline-item"><a href="#">Facebook</a></li>
+          <li class="list-inline-item"><a href="#"><i class="bi bi-instagram"></i></a></li>
+          <li class="list-inline-item"><a href="#"><i class="bi bi-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="#"><i class="bi bi-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="#"><i class="bi bi-linkedin"></i></a></li>
         </ul>
       </div><!-- end col -->
       <div class="col-sm-3">
@@ -47,11 +47,10 @@
       <div class="col-md-12 text-center mt-3">
 
         <p class="monospaced">
-          &copy;<%= link_to "Filipe Zeferino", "https://zeferino.herokuapp.com/", target: :_blank %>
+          <kbd>By &copy;<%= link_to "Filipe Zeferino", "https://zeferino.herokuapp.com/", class: "text-white", target: :_blank %></kbd>
           <span class="text-uppercase">All Rights Reserved</span>
         </p>
       </div>
     </div><!-- end row -->
-
   </div><!-- end container -->
 </footer>

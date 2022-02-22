@@ -1,6 +1,6 @@
-<div class="container index-layout mb-5 me-5">
-  
-  <div class="container">
+<div class="container index-layout">
+  <!-- main row -->
+  <div class="row justify-content-center">
     <div class="row mt-3">
       <p>
         <i class="bi bi-cart2"></i>
@@ -8,52 +8,9 @@
          / <%= link_to @category.name %>
       </p>
     </div>
-  </div><!-- end row -->
-
-  <!-- main row -->
-  <div class="row justify-content-center">
-    <!-- main col index -->
-    <div class="col-md-10">
-      <% @products.each do |product| %>
-        <!-- row product info -->
-        <div class="row py-4 mb-2 index-bottom">
-          <!-- col product image -->
-          <div class="col-md-3 mt-2">
-            <%= link_to product, class: "link link-secondary" do %>
-              <% name = product.name %>
-              <%= image_tag "products/index/#{name}.jpg", class: "img-fluid" %>
-            <% end %>
-          </div><!-- end col product image -->
-          
-          <!-- col product info -->
-          <div class="col-md-9">
-            <%= link_to product do %>
-              <p><font face="Arial" size="5px"><%= product.name %> </font>
-              <% if product.categories.any?%>
-                <% product.categories.each do | category| %>
-                  <span class="badge bg-primary text-uppercase"><%= category.name %></span>
-                <% end %>
-              <% end %>
-              </p>
-              <p><%= simple_format(truncate(product.description, length: 150)) %></p>
-            <% end %>
-            <div class="row">
-              <div class="col-md-4">
-                <h4><strong>$ <%= product.value %>0</strong></h4>
-              </div><!-- end col -->
-              <div class="col-md-8">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-                <i class="bi bi-star"></i>
-                <span class="badge bg-success">61 reviews</span>
-              </div><!-- end col -->
-            </div><!-- end row -->
-          </div><!-- end col product info -->
-        </div><!-- end row product info --> 
-      <% end %>
-    </div><!-- end main col -->
+    
+    <%= render 'layouts/index' %>
+    
   </div><!-- end main row -->
 </div><!-- end container -->
 
