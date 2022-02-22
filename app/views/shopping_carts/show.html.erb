@@ -1,80 +1,107 @@
- <div class="container index-layout mb-5 me-5">
-
-  <!-- col product index -->
-  <div class="col-md-9 mt-5 ms-3">
-    <% @products.each do |product| %>
-      <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+<div class="container index-layout mb-5">
+  <!-- main row -->
+  <div class="row justify-content-center">
+    <div class="col mt-5 text-center">
       
-      <!-- row product info -->
-      <div class="row mb-5">
+      <h5 class="monospaced"><i class="bi bi-cart-check"></i> Shopping Cart <i class="bi bi-cart-check"></i></h5>
+  
+    </div>
+  </div>
 
-        <!-- col product image and name -->
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-md-6">
-              <%= link_to product, class: "link link-secondary" do %>
-                <% name = product.name %>
-                <%= image_tag "products/thumbnails/#{name}.jpg", class: "img-fluid" %>
-              <% end %>
-            </div><!-- end col -->
-            <div class="col-md-6 mt-2">
-              <p><font face="Arial" size="5px"><%= link_to product.name, product %> </font>
-              <% if product.categories.any?%>
-                <% product.categories.each do | category| %>
-                  <span class="badge bg-primary text-uppercase"><%= category.name %></span>
-                <% end %>
-              <% end %>
-              </p>
-            </div><!-- end col -->
-          </div><!-- end row -->
-        </div><!-- end col product image an name -->
+  <div class="row justify-content-center">
+    <!-- main col -->
+    <div class="col-md-6 mt-5">
+      <% @products.each do |product| %>
+        <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
         
-        <!-- col cart info -->
-        <div class="col-md-6">
+        <!-- row product info -->
+        <div class="row mb-3 py-3 cart-info">
 
-          <!-- row product quantity -->
-          <div class="row">
-            
-            <div class="col-md-2 mt-1 text-center">
-              <div class="row">
-                <span>
-                  <%= link_to product_shopping_cart_add_path(:id => association.id), method: :post do %>
-                    <i class="bi bi-caret-up-fill"></i>
-                  <% end %>
-                </span>
-              </div><!-- end row -->
-              <div class="row justify-content-center">
-                <%= association.quantity %>
-              </div><!-- end row -->
-              <div class="row">
-                <span>
-                  <%= link_to product_shopping_cart_reduce_path(:id => association.id), method: :post do %>
-                    <i class="bi bi-caret-down-fill"></i>
-                  <% end %>
-                </span>
-              </div><!-- end row -->
-            </div><!-- end col -->
-            
-            <div class="col-md-4 text-center">
-              <h6 class="monospaced">Unit value</h6>
-              <h5>$ <%= product.value %>0</h5>
-              <%= link_to "Remove", product_shopping_cart_path(association), class: "monospaced", method: :delete, data: { confirm: "Are you sure?" } %>
-            </div><!-- end col -->
+          <!-- col product image and name -->
+          <div class="col-4 text-center">
+            <%= link_to product, class: "link link-secondary" do %>
+              <% name = product.name %>
+              <%= image_tag "products/thumbnails/#{name}.jpg", class: "img-fluid" %>
+            <% end %>
+            <h6><%= link_to product.name, product, class: "monospaced" %></h6>
+          </div><!-- end col product image an name -->
+          
+          <!-- col cart info -->
+          <div class="col">
+            <div class="row align-items-center">
+              <!-- col product quantity -->
+              <div class="col-2">
+                <div class="row">
+                  <span class="text-center">
+                    <%= link_to product_shopping_cart_add_path(:id => association.id), method: :post do %>
+                      <i class="bi bi-caret-up-fill"></i>
+                    <% end %>
+                  </span>
+                </div><!-- end row -->
+                <div class="row justify-content-center">
+                  <%= association.quantity %>
+                </div><!-- end row -->
+                <div class="row">
+                  <span class="text-center">
+                    <%= link_to product_shopping_cart_reduce_path(:id => association.id), method: :post do %>
+                      <i class="bi bi-caret-down-fill"></i>
+                    <% end %>
+                  </span>
+                </div><!-- end row -->
+              </div><!-- end col -->
 
-          </div><!-- end row product quantity -->
-            
-        </div><!-- end col product info -->
+              <!-- col value -->
+              <div class="col-4 mt-1 text-center">
+                <h6 class="monospaced">Price</h6>
+                <h6>$ <%= product.value %>0</h6>
+              </div><!-- end col -->
+              <!-- col remove -->
+              <div class="col-3 text-center">
+                <h6><%= link_to "Remove", product_shopping_cart_path(association), class: "monospaced delete", method: :delete, data: { confirm: "Are you sure?" } %></h6>
+                <i class="bi bi-trash"></i>
+              </div><!-- end col -->
+            </div>
+          </div><!-- end col product info -->
+        </div><!-- end row product info --> 
+      <% end %>
 
-      </div><!-- end row product info --> 
-    <% end %>
-    <% total_cost = 0 %>
-    <% @shopping_cart.products.each do |product| %>
-      <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
-      <% total_cost += (product.value * association.quantity) %>
-    <% end %>
-    <h5>Total cost = $ <%= total_cost %>0</h5>
-  </div><!-- end col product index -->
+      <div class="row justify-content-center">
+        <!-- col -->
+        <div class="col-6 text-center">
+          <% total_cost = 0 %>
+          <% @shopping_cart.products.each do |product| %>
+            <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
+            <% total_cost += (product.value * association.quantity) %>
+          <% end %>
+          <h5>Total cost = $ <%= total_cost %>0</h5>
+        </div><!-- end col -->
+      </div><!-- end row -->
+    </div><!-- end main col -->
+  </div><!-- end main row -->
+
+  <div class="row mt-2 justify-content-center">
+    <!-- col -->
+    <div class="col-5 text-center">
+      <% if !@shopping_cart.checked_in? %>
+        <p><button class="btn btn-lg btn-info">
+            <%= link_to shopping_cart_checkout_path(@shopping_cart), method: :post, class: "caret_up" do %>
+              <i class="bi bi-cart-check"></i> Buy Now!
+            <% end %>
+          </button>
+        </p>
+        <p><button class="btn btn-lg btn-secondary">
+            <%= link_to products_path, class: "caret_up" do %>
+              <i class="bi bi-cart-check"></i>Keep shopping!
+            <% end %>
+          </button>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
 </div><!-- end container -->
+
+
 
 <div class="flickr_pagination mb-4 text-center">
   <%= will_paginate @products, :container => false %>

@@ -40,7 +40,13 @@ a {
 a:hover {
   color: #807f7f;
 }
-
+.delete {
+  color: rgb(238, 120, 29);
+  text-decoration: none;
+}
+.delete:hover {
+  color: red;
+}
 
 /*
   ========================================
@@ -149,6 +155,9 @@ a:hover {
   min-width: 700px;
 }
  */
+.index-bottom {
+  border-bottom: 1px solid #dfe2e5;
+}
 
 /********** Footer **********/
 .bottom-rule {
@@ -207,4 +216,6 @@ footer .navbar .navbar-nav {
   height: 46px;
   padding: 25px 0;
 }
-
+.cart-info {
+  border-bottom: 1px solid #c4c7ca;
+}

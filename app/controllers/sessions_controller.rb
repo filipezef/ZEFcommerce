@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
     session[:cart_id] = nil
     session[:product_qty] = 1
     flash[:notice] = 'You have successfully logged out'
-    redirect_to root_path
+    redirect_to products_path
   end
 
   def add_quantity

@@ -55,11 +55,11 @@ https://getbootstrap.com/docs/5.1/components/navbar/
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li><%= link_to "Profile", @current_user, class: "dropdown-item" %></li>
                   <li><%= link_to "Edit Profile", edit_user_path(current_user), class: "dropdown-item" %></li>
+                  <li><%= link_to 'Logout', logout_path, class: "dropdown-item", method: :delete %></li>
                   <% if current_user.admin? %>
                     <li><hr class="dropdown-divider"></li>
                     <li><%= link_to "Users", users_path, class: "dropdown-item" %></li>
                     <li><%= link_to "Categorires Index", categories_path, class: "dropdown-item" %></li>
-
                   <% end %>
                 </ul>
               <% end %>
