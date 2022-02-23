@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  ########## pages ##########
+  ########## Root ##########
   root 'products#index'
 
   ########## shopping_carts ##########

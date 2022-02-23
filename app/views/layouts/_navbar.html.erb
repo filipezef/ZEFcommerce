@@ -3,7 +3,7 @@ https://getbootstrap.com/docs/5.1/components/navbar/
 -->
 <div class="row">
   <div class="nav-header col-md-12 text-center text-light">
-    <h1 class="text-uppercase"><i class="bi bi-intersect"></i> ZEFcommerce</h1>
+    <h1 class="text-uppercase mt-3"><i class="bi bi-intersect"></i> ZEFcommerce</h1>
     <p class="monospaced">
       By &copy;<%= link_to "Filipe Zeferino", "https://zeferino.herokuapp.com/", class: "text-white", target: :_blank %>
       <span class="text-uppercase">All Rights Reserved</span>
@@ -61,7 +61,8 @@ https://getbootstrap.com/docs/5.1/components/navbar/
                     <li><%= link_to "Profile", current_user, class: "dropdown-item" %></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><%= link_to "Users", users_path, class: "dropdown-item" %></li>
-                    <li><%= link_to "Categorires Index", categories_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "Shopping carts", shopping_carts_path, class: "dropdown-item" %></li>
+                    <li><%= link_to "Categories Index", categories_path, class: "dropdown-item" %></li>
                   </ul><!--end dropdown -->
                 </li><!--end dropdown -->
               <% else %>
@@ -88,11 +89,11 @@ https://getbootstrap.com/docs/5.1/components/navbar/
 <div class="container">
   <div class="row mt-2 justify-content-end">
     <% if current_user %>
-      <div class="col-1 text-center">
+      <div class="col-1 text-end">
         <% @shopping_cart = current_user.shopping_carts.last %>
         <% if @shopping_cart.products.any? %>
           <%= link_to @shopping_cart do %>
-            <h4 class="success-mine"><i class="bi bi-cart-check"></i></h4>
+            <h4><i class="bi bi-cart-check"></i></h4>
           <% end %>
         <% else %>
           <%= link_to @shopping_cart do %>
@@ -100,8 +101,13 @@ https://getbootstrap.com/docs/5.1/components/navbar/
           <% end %>
         <% end %>
       </div><!-- end col -->
-      <div class="col-1 mt-1 text-center">
-        <h6><%= link_to "Logout", logout_path, class: "delete", method: :delete %></h6>
+      <div class="col-1 text-end">
+        <%= link_to logout_path, class: "delete", method: :delete do %>
+          <h4><i class="bi bi-door-open"></i></h4>
+        <% end %>
+      </div><!-- end col -->
+      <div class="col-1 text-end">
+        
       </div><!-- end col -->
     <% else %>
       <div class="col-3 text-end">

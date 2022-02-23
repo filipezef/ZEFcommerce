@@ -28,11 +28,7 @@ class ShoppingCartsController < ApplicationController
   def buy_now
     add_product
     flash[:notice] = 'Commit your order!'
-    redirect_to payment_path
-  end
-
-  def payment
-    @shopping_cart = ShoppingCart.find(session[:cart_id])
+    redirect_to @shopping_cart
   end
 
   def checkout

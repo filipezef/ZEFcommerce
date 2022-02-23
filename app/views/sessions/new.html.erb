@@ -1,11 +1,62 @@
-<h1>LOGIN</h1>
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+     
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+          <p class="lead fw-normal mb-0 me-3">Login with</p>
+          <button type="button" class="btn btn-primary btn-floating mx-1">
+            <i class="bi bi-facebook"></i>
+          </button>
 
-<%= form_with(scope: :session, url: login_path, local: true) do |f| %>
-  <%= f.label :email %>
-  <p><%= f.email_field :email, placeholder: "Enter your email" %></p>
-  <%= f.label :password %>
-  <p><%= f.password_field :password, placeholder: "Enter your password" %></p>
-  <p><%= f.submit "Log in" %></p>
-<% end %>
-<p><%= link_to "Sign up", signup_path  %></p>
-<p><%= link_to "Cancel", root_path  %></p>
+          <button type="button" class="btn btn-primary btn-floating mx-1">
+            <i class="bi bi-twitter"></i>
+          </button>
+
+          <button type="button" class="btn btn-primary btn-floating mx-1">
+            <i class="bi bi-linkedin"></i>
+          </button>
+        </div>
+
+        <div class="divider d-flex align-items-center my-4">
+          <p class="text-center fw-bold mx-3 mb-0">Or</p>
+        </div>
+
+        <%= form_with(scope: :session, url: login_path, local: true) do |f| %>
+          <!-- Email input -->
+          <div class="form-outline mb-4">
+            <%= f.email_field :email, id: "form3Example3",
+                                        class: "form-control form-control-lg",
+                                        placeholder: "Enter your email" %>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-3">
+            <%= f.password_field :password, id: "form3Example4",
+                                        class: "form-control form-control-lg",
+                                        placeholder: "Password" %>
+          </div>
+
+          <div class="d-flex justify-content-between mb-5 align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3">
+                Remember me
+              </label>
+            </div>
+            <a href="#!" class="text-body">Forgot password?</a>
+          </div>
+
+          <p><%= f.submit "Login", class: "btn btn-primary btn-lg",
+                                    style: "padding-left: 2.5rem; padding-right: 2.5rem;" %></p>
+        <% end %>
+
+        <div class="text-center text-lg-start mt-4 pt-2">
+          <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
+          <%= link_to "Sign up", signup_path, class: "link-primary"  %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
