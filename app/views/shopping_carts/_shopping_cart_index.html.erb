@@ -1,23 +1,22 @@
-<% @shopping_carts.each do |shopping_cart| %>
-  <table>
-    <thead>
+<table class="table table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Checked_in?</th>
+      <th scope="col">Delivered?</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shopping_carts.each do |shopping_cart| %>
       <tr>
-        <th>ID</th>
-        <th>Checked_in?</th>
-        <th>Delivered?</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr>
-        <td><%= shopping_cart.id %></td>
+        <th scope="row"><%= shopping_cart.id %></th>
+        <td><%= shopping_cart.user_id %></td>
         <td><%= shopping_cart.checked_in %></td>
         <td><%= shopping_cart.delivered %></td>
-        <td>
-          <%= link_to "View", shopping_cart %>
-        </td>
+        <td><%= link_to "View", shopping_cart %></td>
       </tr>
-    </tbody>
-  </table>
-<% end %>
+    <% end %>
+  </tbody>
+</table>

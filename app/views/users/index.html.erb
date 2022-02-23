@@ -1,29 +1,27 @@
-<h1>USERS</h1>
-
-<% @users.each do |user| %>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+<div class="row justify-content-center">
+  <div class="col-md-6 mt-5 mb-5">
     
-    <tbody>
-      <tr>
-        <td><%= user.id %></td>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to "View", user %>
-          <%= link_to "Edit", edit_user_path(user) %>
-          <%= link_to "Delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+    <h2 class="text-center mb-5">USERS INDEX</h2>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to "View", user %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<p><%= link_to "Home", root_path %></p>
+  </div><!-- end col --> 
+</div>
