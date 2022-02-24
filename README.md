@@ -1,24 +1,37 @@
-# README
+# E-commerce webapp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Resources (all RESTful routes available): 
 
-Things you may want to cover:
+<ul>
+  <li>Categories;</li>
+  <li>ProductShoppingCarts;</li>
+  <li>Products;</li>
+  <li>Sessions;</li>
+  <li>ShoppingCarts;</li>
+  <li>Users.</li>
+</ul>
 
-* Ruby version
 
-* System dependencies
+## Associations:
 
-* Configuration
+<ul>
+  <li>One-to-many between users / shopping_carts;</li>
+  <li>Many-to-many beteeen products / categories.</li>
+</ul>
 
-* Database creation
 
-* Database initialization
+## Authentication: based on logged in/logged out state;
 
-* How to run the test suite
+## Security: admin user functionality and access level;
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Dependencies:
 
-* ...
+<ul>
+  <li>Bootstrap 5.1 (Popper and Webpacker also required)</li>
+  <li>PostgreSQL (app is Heroku hosted, required for productino environment)</li>
+  <li>Bcrypt</li>
+</ul>
+
+### App based on Rails 6 and ruby 2.7.4.1.
+### Hosted by heroku -> https://zefcommerce.herokuapp.com//
