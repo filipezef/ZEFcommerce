@@ -1,7 +1,6 @@
 # E-commerce webapp
 
 ## Resources (all RESTful routes available): 
-
 <ul>
   <li>Categories;</li>
   <li>ProductShoppingCarts;</li>
@@ -11,22 +10,15 @@
   <li>Users.</li>
 </ul>
 
-
 ## Associations:
-
 <ul>
   <li>One-to-many between users / shopping_carts;</li>
   <li>Many-to-many beteeen products / categories.</li>
 </ul>
 
-
 ## Authentication: based on logged in/logged out state;
-
 ## Security: admin user functionality and access level;
-
-
 ## Dependencies:
-
 <ul>
   <li>Bootstrap 5.1 (Popper and Webpacker also required)</li>
   <li>PostgreSQL (app is Heroku hosted, required for productino environment)</li>
