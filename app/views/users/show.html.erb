@@ -7,15 +7,19 @@
     <h2 class="text-center mt-5"><%= pluralize(@user.shopping_carts.count, "shopping cart") %></h2>
     <%= render 'shopping_carts/shopping_cart_index' %>
 
-      <% if logged_in? && current_user.admin? %>
-        <%= link_to "Edit", edit_user_path(@user), class: "link-primary" %>
-        <%= link_to "Delete", user_path(@user), method: :delete, data: { confirm: "Are you sure? All user info along
-                                                                                  with associated shopping carts will be deleted from DB" },
-                                                                 class: "link-danger" %>
-      <% end %>
-      <% if logged_in? && (current_user == @user && !@user.admin?) %>
-        <%= link_to "Edit", edit_user_path(@user), class: "link-primary" %>
-      <% end %>
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <% if logged_in? && current_user.admin? %>
+          <%= link_to "Edit", edit_user_path(@user), class: "link-primary" %> | 
+          <%= link_to "Delete", user_path(@user), method: :delete, data: { confirm: "Are you sure? All user info along
+                                                                                    with associated shopping carts will be deleted from DB" },
+                                                                    class: "link-danger" %>
+        <% end %>
+        <% if logged_in? && (current_user == @user && !@user.admin?) %>
+          <%= link_to "Edit", edit_user_path(@user), class: "link-primary" %>
+        <% end %>
+      </div><!-- end col -->
+    </div><!-- end row -->
 
   </div><!-- end col --> 
 </div>

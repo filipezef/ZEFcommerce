@@ -79,5 +79,4 @@ class ShoppingCartsController < ApplicationController
     ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: session[:product_id]).update(quantity: session[:product_qty])
     session[:product_qty] = 1
   end
-
 end

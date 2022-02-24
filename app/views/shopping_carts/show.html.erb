@@ -51,7 +51,7 @@
               <!-- col value -->
               <div class="col-4 mt-1 text-center">
                 <h6 class="monospaced">Price</h6>
-                <h6>$ <%= product.value %>0</h6>
+                <h6><%= number_to_currency(product.value) %></h6>
               </div><!-- end col -->
               <!-- col remove -->
               <div class="col-3 text-center">
@@ -72,7 +72,7 @@
             <% association = ProductShoppingCart.find_by(shopping_cart_id: @shopping_cart.id, product_id: product.id) %>
             <% total_cost += (product.value * association.quantity) %>
           <% end %>
-          <h5>Total cost = $ <%= total_cost %>0</h5>
+          <h5>Total cost = <%= number_to_currency(total_cost) %></h5>
         </div><!-- end col -->
       </div><!-- end row -->
     </div><!-- end main col -->

@@ -1,28 +1,28 @@
-<h1>CATEGORIES</h1>
-
-<% @categories.each do |category| %>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
+<div class="row justify-content-center">
+  <div class="col-md-4 mt-5 mb-5 ms-2">
     
-    <tbody>
-      <tr>
-        <td><%= category.id %></td>
-        <td><%= category.name %></td>
-        <td>
-          <%= link_to "View", category %>
-          <%= link_to "Edit", edit_category_path(category) %>
-          <%= link_to "Delete", category_path(category), method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
-
-<p><%= link_to "New category", new_category_path %></p>
-<p><%= link_to "Home", root_path %></p>
+    <h2 class="text-center mb-5">CATEGORIES INDEX</h2>
+    <table class="table table-striped text-center">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr>
+            <th scope="row"><%= category.id %></th>
+            <td><%= category.name %></td>
+            <td><%= link_to "View", category, class: "link-success" %> | 
+                <%= link_to "Edit", edit_category_path(category), class: "link-primary" %> | 
+                <%= link_to "Delete", category_path(category), method: :delete, data: { confirm: "Are you sure?" }, class: "link-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <p><%= link_to "New category", new_category_path, class: "link-info ms-3" %></p>
+  </div><!-- end col --> 
+</div>

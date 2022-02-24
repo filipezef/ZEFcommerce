@@ -42,9 +42,8 @@ class SessionsController < ApplicationController
     if session[:product_qty] > 1
       session[:product_qty] -= 1
     else
-      flash[:notice] = 'A quantidade deve ser igual ou maior que 1'
+      flash[:notice] = 'Minium quantity is 1!'
     end
     redirect_to product_path(Product.find(session[:product_id]))
   end
-
 end

@@ -57,7 +57,7 @@
       </div><!-- end row -->
       <div class="row">
         <div class="col-md-12 index-bottom">
-          <h2 class="product-price">$ <%= @product.value %>0</h2>
+          <h2 class="product-price"><%= number_to_currency(@product.value) %></h2>
         </div>
       </div><!-- end row -->
 
