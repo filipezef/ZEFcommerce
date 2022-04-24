@@ -21,9 +21,9 @@
 ## Dependencies:
 <ul>
   <li>Bootstrap 5.1 (Popper and Webpacker also required)</li>
-  <li>PostgreSQL (app is Heroku hosted, required for productino environment)</li>
-  <li>Bcrypt</li>
+  <li>PostgreSQL (Heroku hosted)</li>
+  <li>Bcrypt, authentication system built manually</li>
 </ul>
 
 ### App based on Rails 6 and ruby 2.7.4.1.
-### Hosted by heroku -> https://zefcommerce.herokuapp.com//
+### Hosted by heroku -> https://zefcommerce.herokuapp.com/
